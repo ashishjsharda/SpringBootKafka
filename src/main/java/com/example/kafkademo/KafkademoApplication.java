@@ -12,7 +12,16 @@ public class KafkademoApplication {
     private KafkaTemplate<String, String> kafkaTemplate;
 
     public void sendMessage(String msg) {
-        kafkaTemplate.send("Hello World", msg);
+        kafkaTemplate.send("helloworld", msg);
+    }
+
+    @KafkaListener(topics = "helloworld", groupId = "group-id")
+    public void listen(String message) {
+        System.out.println("Received Messasge in group - group-id: " + message);
+    }
+    @Override
+    public void run(ApplicationArguments args) throws Exception {
+        sendMessage("Hi Welcome to Kafka Example");
     }
     public static void main(String[] args) {
         SpringApplication.run(KafkademoApplication.class, args);
