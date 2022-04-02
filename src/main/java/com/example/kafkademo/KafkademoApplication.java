@@ -12,7 +12,7 @@ public class KafkademoApplication {
     private KafkaTemplate<String, String> kafkaTemplate;
 
     public void sendMessage(String msg) {
-        kafkaTemplate.send("tutorialspoint", msg);
+        kafkaTemplate.send("Hello World", msg);
     }
     public static void main(String[] args) {
         SpringApplication.run(KafkademoApplication.class, args);
